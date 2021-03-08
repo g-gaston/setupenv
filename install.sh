@@ -32,4 +32,6 @@ if [ ! -d "$DOTFILES_INSTALL_DIR" ]; then
 else
     echo "Dotfiles already installed"
 fi
-    
+
+echo "Installing vscode extensions..."
+cat ./vscode_extensions.txt | xargs -L 1 code --install-extension

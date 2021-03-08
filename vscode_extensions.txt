@@ -1,0 +1,13 @@
+aaron-bond.better-comments
+bungcip.better-toml
+CoenraadS.bracket-pair-colorizer-2
+eamodio.gitlens
+Equinusocio.vsc-material-theme
+formulahendry.code-runner
+mechatroner.rainbow-csv
+oderwat.indent-rainbow
+redhat.vscode-yaml
+sleistner.vscode-fileutils
+vincaslt.highlight-matching-tag
+yzhang.markdown-all-in-one
+    
