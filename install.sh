@@ -18,6 +18,16 @@ else
     echo "Prezto already installed"
 fi
 
+
+TMP_INSTALL_DIR="$HOME/.tmux/plugins/tpm"
+if [ ! -d "$TMP_INSTALL_DIR" ]; then
+    echo "Installing tmp..."
+    git clone https://github.com/tmux-plugins/tpm $TMP_INSTALL_DIR
+    $TMP_INSTALL_DIR/bin/install_plugins
+else
+    echo "tmp already installed"
+fi
+
 DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
 if [ ! -d "$DOTFILES_INSTALL_DIR" ]; then
     echo "Installing dotfiles..."
