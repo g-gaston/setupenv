@@ -45,3 +45,13 @@ fi
 
 echo "Installing vscode extensions..."
 cat ./vscode_extensions.txt | xargs -L 1 code --install-extension
+
+DIR_COLORS_INSTALL_DIR="$HOME/.dir_colors_repo"
+if [ ! -d "$DIR_COLORS_INSTALL_DIR" ]; then
+	echo "Installing dir colors..."
+	git clone https://github.com/arcticicestudio/nord-dircolors.git $DIR_COLORS_INSTALL_DIR
+	ln -sr $DIR_COLORS_INSTALL_DIR/src/dir_colors .dir_colors
+else
+	echo "Dir colors already installed"
+fi
+
