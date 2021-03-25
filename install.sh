@@ -18,14 +18,13 @@ else
     echo "Prezto already installed"
 fi
 
-
-TMP_INSTALL_DIR="$HOME/.tmux/plugins/tpm"
-if [ ! -d "$TMP_INSTALL_DIR" ]; then
-    echo "Installing tmp..."
-    git clone https://github.com/tmux-plugins/tpm $TMP_INSTALL_DIR
-    $TMP_INSTALL_DIR/bin/install_plugins
+DIR_COLORS_INSTALL_DIR="$HOME/.dir_colors_repo"
+if [ ! -d "$DIR_COLORS_INSTALL_DIR" ]; then
+	echo "Installing dir colors..."
+	git clone https://github.com/arcticicestudio/nord-dircolors.git $DIR_COLORS_INSTALL_DIR
+	ln -sr $DIR_COLORS_INSTALL_DIR/src/dir_colors .dir_colors
 else
-    echo "tmp already installed"
+	echo "Dir colors already installed"
 fi
 
 DOTFILES_INSTALL_DIR="$HOME/.dotfiles"
@@ -43,15 +42,20 @@ else
     echo "Dotfiles already installed"
 fi
 
+TMP_INSTALL_DIR="$HOME/.tmux/plugins/tpm"
+if [ ! -d "$TMP_INSTALL_DIR" ]; then
+    echo "Installing tmp..."
+    git clone https://github.com/tmux-plugins/tpm $TMP_INSTALL_DIR
+    $TMP_INSTALL_DIR/bin/install_plugins
+else
+    echo "tmp already installed"
+fi
+
 echo "Installing vscode extensions..."
 cat ./vscode_extensions.txt | xargs -L 1 code --install-extension
 
-DIR_COLORS_INSTALL_DIR="$HOME/.dir_colors_repo"
-if [ ! -d "$DIR_COLORS_INSTALL_DIR" ]; then
-	echo "Installing dir colors..."
-	git clone https://github.com/arcticicestudio/nord-dircolors.git $DIR_COLORS_INSTALL_DIR
-	ln -sr $DIR_COLORS_INSTALL_DIR/src/dir_colors .dir_colors
-else
-	echo "Dir colors already installed"
-fi
+echo "Setting classic scroll dir..."
+defaults write -g com.apple.swipescrolldirection -bool FALSE
 
+echo "Setting dock autohide..."
+defaults write com.apple.Dock autohide 1
