@@ -1,5 +1,8 @@
 #/bin/sh
 
+echo "Installing xcode developer tools"
+xcode-select --install
+
 if ! which brew &>/dev/null; then
     echo "Installing brew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -57,5 +60,11 @@ cat ./vscode_extensions.txt | xargs -L 1 code --install-extension
 echo "Setting classic scroll dir..."
 defaults write -g com.apple.swipescrolldirection -bool FALSE
 
+
 echo "Setting dock autohide..."
 defaults write com.apple.Dock autohide 1
+
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider
+defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false    # For VS Codium
+defaults delete -g ApplePressAndHoldEnabled                                      # If necessary, reset global default
