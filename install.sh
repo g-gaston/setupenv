@@ -25,7 +25,7 @@ DIR_COLORS_INSTALL_DIR="$HOME/.dir_colors_repo"
 if [ ! -d "$DIR_COLORS_INSTALL_DIR" ]; then
 	echo "Installing dir colors..."
 	git clone https://github.com/arcticicestudio/nord-dircolors.git $DIR_COLORS_INSTALL_DIR
-	ln -sr $DIR_COLORS_INSTALL_DIR/src/dir_colors .dir_colors
+	ln -s $DIR_COLORS_INSTALL_DIR/src/dir_colors $HOME/.dir_colors
 else
 	echo "Dir colors already installed"
 fi
@@ -57,14 +57,27 @@ fi
 echo "Installing vscode extensions..."
 cat ./vscode_extensions.txt | xargs -L 1 code --install-extension
 
+
+echo "Installing MesloLGS NF font"
+for fontUrl in 'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf' \
+            'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf' \
+            'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf' \
+	    'https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf'
+do
+    (cd $HOME/Library/Fonts && curl -LO $fontUrl)
+done
+
+
 echo "Setting classic scroll dir..."
 defaults write -g com.apple.swipescrolldirection -bool FALSE
 
 
 echo "Setting dock autohide..."
-defaults write com.apple.Dock autohide 1
+defaults write com.apple.dock autohide -bool false
 
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider
 defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false    # For VS Codium
 defaults delete -g ApplePressAndHoldEnabled                                      # If necessary, reset global default
+
+killall Dock
