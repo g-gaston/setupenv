@@ -11,4 +11,4 @@ Run `./install.sh`
 
 ### If using new ansible version
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/g-gaston/setupenv/master/bootstrap.sh)"
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/g-gaston/setupenv/master/bootstrap.sh)"`
