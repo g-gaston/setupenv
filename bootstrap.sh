@@ -42,7 +42,7 @@ if [ "$(uname)" == "Darwin" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
     success "brew installed"
   else
-    success "$1 already installed"
+    success "homebrew already installed"
   fi
 elif [ "$(uname)" == "Linux" ]; then
   sudo apt update
