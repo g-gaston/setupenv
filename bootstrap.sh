@@ -65,7 +65,7 @@ fi
 # Clone devenv repo with ansible playbooks
 # Include the ssh key since at this point the ssg/.config might not exist or be configure yet
 # We will let ansivle manage the ssh key later
-[ -f "$DEVENV_PATH" ] || GIT_SSH_COMMAND="ssh -i $GITHUB_SSH_KEY_PATH -o IdentitiesOnly=yes" git clone git@github.com:g-gaston/devenv.git "$DEVENV_PATH"
+[ -d "$DEVENV_PATH" ] || GIT_SSH_COMMAND="ssh -i $GITHUB_SSH_KEY_PATH -o IdentitiesOnly=yes" git clone git@github.com:g-gaston/devenv.git "$DEVENV_PATH"
 
 # Install ansible extra modules
 ansible-galaxy install -r "$DEVENV_PATH/ansible/requirements.yaml"
