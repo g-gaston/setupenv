@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-set -x
+set -o pipefail
 
 # success prints a checkmark followed by the first argument
 success() {
