@@ -57,12 +57,15 @@ ensure_command ansible gh
 if ! gh auth status > /dev/null 2>&1; then
   # TODO: maybe use the token base auth for machine without graphical interface
   gh auth login --git-protocol ssh --hostname github.com --web
+
 else
   success "gh is already authenticated"
 fi
 
 # Clone devenv repo with ansible playbooks
-[ -f "$DEVENV_PATH" ] || git clone git@github.com:g-gaston/devenv.git "$DEVENV_PATH"
+# Include the ssh key since at this point the ssg/.config might not exist or be configure yet
+# We will let ansivle manage the ssh key later
+[ -f "$DEVENV_PATH" ] || GIT_SSH_COMMAND="ssh -i $GITHUB_SSH_KEY_PATH -o IdentitiesOnly=yes" git clone git@github.com:g-gaston/devenv.git "$DEVENV_PATH"
 
 # Install ansible extra modules
 ansible-galaxy install -r "$DEVENV_PATH/ansible/requirements.yml"
