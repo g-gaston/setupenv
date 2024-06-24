@@ -56,7 +56,7 @@ ensure_command ansible gh
 # Setup github auth if not set yet
 if ! gh auth status > /dev/null 2>&1; then
   # TODO: maybe use the token base auth for machine without graphical interface
-  gh auth login --git-protocol ssh --host github.com --web
+  gh auth login --git-protocol ssh --hostname github.com --web
 else
   success "gh is already authenticated"
 fi
