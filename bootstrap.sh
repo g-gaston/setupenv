@@ -68,7 +68,7 @@ fi
 [ -f "$DEVENV_PATH" ] || GIT_SSH_COMMAND="ssh -i $GITHUB_SSH_KEY_PATH -o IdentitiesOnly=yes" git clone git@github.com:g-gaston/devenv.git "$DEVENV_PATH"
 
 # Install ansible extra modules
-ansible-galaxy install -r "$DEVENV_PATH/ansible/requirements.yml"
+ansible-galaxy install -r "$DEVENV_PATH/ansible/requirements.yaml"
 
 # Run ansible playbook with args from this comand
-ansible-playbook "$DEVENV_PATH/ansible/main.yml" --ask-become-pass "$@"
+ansible-playbook "$DEVENV_PATH/ansible/main.yaml" --ask-become-pass "$@"
