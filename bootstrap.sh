@@ -38,6 +38,9 @@ DEVENV_PATH=$HOME/devenv
 if [ "$(uname)" == "Darwin" ]; then
   if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Temporaly add brew to path
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> "$HOME/.zprofile"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     success "brew installed"
   else
     success "$1 already installed"
