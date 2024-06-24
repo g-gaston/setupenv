@@ -5,7 +5,7 @@ set -o pipefail
 
 # success prints a checkmark followed by the first argument
 success() {
-  printf "\U2705 %s\n" "$1"
+  echo "✅ $1"
 }
 
 # esnure_command checks if a set of commands are available and installs them if not
