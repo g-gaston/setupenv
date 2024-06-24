@@ -15,7 +15,6 @@ ensure_command() {
       case "$(uname)" in
         Darwin)
           brew install "$cmd"
-          success "$1 installed"
           ;;
         Linux) # For linux, assume ubuntu
           sudo apt install -y "$cmd"
@@ -24,9 +23,9 @@ ensure_command() {
           return 1
           ;;
       esac
-      success "$1 installed"
+      success "$cmd installed"
     else
-      success "$1 already installed"
+      success "$cmd already installed"
     fi
   done
 }
