@@ -70,5 +70,6 @@ fi
 # Install ansible extra modules
 ansible-galaxy install -r "$DEVENV_PATH/ansible/requirements.yaml"
 
-# Run ansible playbook with args from this comand
-ANSIBLE_CONFIG="$DEVENV_PATH/ansible/ansible.cfg" ansible-playbook "$DEVENV_PATH/ansible/main.yaml" --ask-become-pass "$@"
+# Run ansible playbook with args from this command
+# Include SHELL to zsh so brew completion is installed for zsh even if we are running this script from bash
+SHELL="/bin/zsh" ANSIBLE_CONFIG="$DEVENV_PATH/ansible/ansible.cfg" ansible-playbook "$DEVENV_PATH/ansible/main.yaml" --ask-become-pass "$@"
