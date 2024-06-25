@@ -35,6 +35,8 @@ DEVENV_PATH=$HOME/devenv
 
 # If Mac install hombrew,
 if [ "$(uname)" == "Darwin" ]; then
+  # Hombrew will use this to determine the shell for autocompletions
+  export SHELL="/bin/zsh"
   if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     # Temporaly add brew to path
@@ -71,5 +73,4 @@ fi
 ansible-galaxy install -r "$DEVENV_PATH/ansible/requirements.yaml"
 
 # Run ansible playbook with args from this command
-# Include SHELL to zsh so brew completion is installed for zsh even if we are running this script from bash
-SHELL="/bin/zsh" ANSIBLE_CONFIG="$DEVENV_PATH/ansible/ansible.cfg" ansible-playbook "$DEVENV_PATH/ansible/main.yaml" --ask-become-pass "$@"
+ANSIBLE_CONFIG="$DEVENV_PATH/ansible/ansible.cfg" ansible-playbook "$DEVENV_PATH/ansible/main.yaml" --ask-become-pass "$@"
